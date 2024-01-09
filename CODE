@@ -1,0 +1,188 @@
+//Задание 1 Выведите на консоль минимальные и максимальные значения для предопределенных типов данных CTS.
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Вывод заголовка
+        Console.WriteLine("Тип данных\tМинимальное значение\tМаксимальное значение");
+
+// Вывод значений для типа данных sbyte
+DisplayMinMaxValues("sbyte", SByte.MinValue, SByte.MaxValue);
+
+// Вывод значений для типа данных byte
+DisplayMinMaxValues("byte", Byte.MinValue, Byte.MaxValue);
+
+// Вывод значений для типа данных short
+DisplayMinMaxValues("short", Int16.MinValue, Int16.MaxValue);
+
+// Вывод значений для типа данных ushort
+DisplayMinMaxValues("ushort", UInt16.MinValue, UInt16.MaxValue);
+
+// Вывод значений для типа данных int
+DisplayMinMaxValues("int", Int32.MinValue, Int32.MaxValue);
+
+// Вывод значений для типа данных uint
+DisplayMinMaxValues("uint", UInt32.MinValue, UInt32.MaxValue);
+
+// Вывод значений для типа данных long
+DisplayMinMaxValues("long", Int64.MinValue, Int64.MaxValue);
+
+// Вывод значений для типа данных ulong
+DisplayMinMaxValues("ulong", UInt64.MinValue, UInt64.MaxValue);
+
+// Вывод значений для типа данных float
+DisplayMinMaxValues("float", Single.MinValue, Single.MaxValue);
+
+// Вывод значений для типа данных double
+DisplayMinMaxValues("double", Double.MinValue, Double.MaxValue);
+
+// Вывод значений для типа данных decimal
+DisplayMinMaxValues("decimal", Decimal.MinValue, Decimal.MaxValue);
+
+// Вывод значений для типа данных char (выводим значения как числовые коды)
+DisplayMinMaxValues("char", (int)Char.MinValue, (int)Char.MaxValue);
+
+// Ожидание ввода пользователя перед завершением программы
+Console.ReadLine();
+    }
+
+    // Метод для вывода значений минимального и максимального для заданного типа данных
+    static void DisplayMinMaxValues(string typeName, object minValue, object maxValue)
+{
+Console.WriteLine($"{typeName,-10}\t{minValue,-22}\t{maxValue}");
+}
+}
+
+/*Задание 2 Создайте класс с именем Rectangle.
+В теле класса создайте два поля, описывающие длины сторон double side1, side2.
+Создайте пользовательский конструктор Rectangle(double sideA, double sideB), в теле которого поля sideA и sideB инициализируются значениями аргументов.
+Создайте два private метода, вычисляющие площадь прямоугольника - double CalculateArea() и периметр прямоугольника - double CalculatePerimeter ().
+Создайте два свойства double Area и double Perimeter с одним методом доступа get, вызывающим созданные ранее методы.
+Напишите программу, которая принимает от пользователя длины двух сторон прямоугольника и выводит на экран периметр и площадь. Покройте тестами методы класса Rectangle.*/
+
+using System;
+
+class Rectangle
+{
+    // Поля, описывающие длины сторон прямоугольника
+    private double side1;
+    private double side2;
+
+    // Пользовательский конструктор, инициализирующий длины сторон прямоугольника
+    public Rectangle(double sideA, double sideB)
+    {
+        side1 = sideA;
+        side2 = sideB;
+    }
+
+    // Метод вычисления площади прямоугольника
+    private double CalculateArea()
+    {
+        return side1 * side2;
+    }
+
+    // Метод вычисления периметра прямоугольника
+    private double CalculatePerimeter()
+    {
+        return 2 * (side1 + side2);
+    }
+
+    // Свойство для получения площади прямоугольника
+    public double Area
+    {
+        get { return CalculateArea(); }
+    }
+
+    // Свойство для получения периметра прямоугольника
+    public double Perimeter
+    {
+        get { return CalculatePerimeter(); }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Получаем от пользователя длины сторон прямоугольника
+        Console.Write("Введите длину стороны A: ");
+        double sideA = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Введите длину стороны B: ");
+        double sideB = Convert.ToDouble(Console.ReadLine());
+
+        // Создаем объект прямоугольника с использованием конструктора
+        Rectangle myRectangle = new Rectangle(sideA, sideB);
+
+        // Выводим на экран периметр и площадь прямоугольника, используя свойства
+        Console.WriteLine($"Периметр прямоугольника: {myRectangle.Perimeter}");
+        Console.WriteLine($"Площадь прямоугольника: {myRectangle.Area}");
+
+        Console.ReadLine();
+    }
+}
+
+/*Задание 3 Создайте классы Point и Figure.
+Класс Point должен содержать два целочисленных поля с координатами точки.
+Создайте два свойства с одним методом доступа get.
+Создайте пользовательский конструктор, в теле которого проинициализируйте поля значениями аргументов.
+Класс Figure должен содержать конструкторы, которые принимают от 3-х до 5-ти аргументов типа Point, а также строковое автосвойство для хранения названия фигуры.
+Создайте два метода: double LengthSide(Point A, Point B), который рассчитывает длину стороны многоугольника; double PerimeterCalculator(), который рассчитывает периметр многоугольника.
+Напишите программу, которая выводит на экран название и периметр многоугольника. Покройте тестами методы класса Figure.
+
+Примечание: Избегайте повторения кода при реализации перегруженных конструкторов, используйте реализованные ранее конструкторы с по*/
+
+using System;
+public class Point
+{
+    private double x, y;
+
+    public Point(double x1, double y1)
+    {
+        x = x1;
+        y = y1;
+    }
+    public double X => x;
+    public double Y => y;
+
+}
+
+public class Figure
+{
+
+    List<Point> Points = new List<Point>();
+    public double P { get; set; }
+    public Figure(params Point[] points) 
+    {
+        Points.AddRange(points);
+        PerimeterCalculator();
+    }
+
+    private static double LengthSide(Point A, Point B) =>
+        Math.Sqrt(Math.Pow(Math.Abs(A.X - B.X), 2) + Math.Pow(Math.Abs(A.Y - B.Y), 2));
+    
+    private void PerimeterCalculator()
+    {
+        string name = "";
+        for (int i = 0; i < Points.Count; i++)
+        {
+            if (i == Points.Count - 1)
+            {
+                P += LengthSide(Points[0], Points[i]);
+                break;
+            }
+            P += LengthSide(Points[i], Points[i + 1]);
+            
+        }
+        if (Points.Count == 3)
+        { name = "Треугольника"; } 
+        else if (Points.Count == 4) 
+        { name = "Четырехугольника"; }
+        else if (Points.Count == 5)
+        { name = "Пятиугольника"; }
+
+        Console.WriteLine("Периметр {0} =  {1} ", name ,P);
+    }
+}
